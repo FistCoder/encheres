@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{layout :: frag_layout(
+									title='Login',
+									content=~{:: main}
+									)}">
+
+
+<body>
+<form data-th-action="@{/login}" method="post">
+    <h1>Login</h1>
+    <div class="cards" data-th-if="${param.error}" >Login/Password Error</div>
+    <div data-th-if="${param.logout}"> Error Logout</div>
+
+    <ul class="">
+        <li>
+            <label for="username" >Login</label>
+            <input id="username" name="username" value="@campus-eni.fr">
+        </li>
+        <li>
+            <label for="password" >Password</label>
+            <input id="password" name="password" type="password">
+        </li>
+        <li>
+            <button type="submit">Login</button>
+        </li>
+    </ul>
+</form>
+</body>
+</html>
