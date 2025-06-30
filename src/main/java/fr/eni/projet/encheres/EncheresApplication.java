@@ -8,6 +8,7 @@ public class EncheresApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EncheresApplication.class, args);
+        System.out.println("ss");
     }
 
 }
