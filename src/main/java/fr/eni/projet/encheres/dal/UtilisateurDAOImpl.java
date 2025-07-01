@@ -77,6 +77,11 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         return false;
     }
 
+    @Override
+    public Utilisateur findByEmail(String username) {
+        return null;
+    }
+
     private class UtilisateurMapper implements RowMapper<Utilisateur> {
         @Override
         public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
