@@ -11,21 +11,18 @@
     <nav>
         <div class="header-card" data-sec-authorize="isAuthenticated()">
             <span data-th-text="'Pseudo : ' + ${#authentication.name}"></span>
-            <span data-th-text="'Roles : ' + ${#authentication.principal.authorities}"></span>
         </div>
         <div>
             <ul>
-                <li data-sec-authorize="hasRole('MEMBRE')"><a href="/" data-th-text="#{frag-entete.a.accueil}"></a></li>
-
-
-                <li data-sec-authorize="hasRole('MEMBRE')"><a href="/enchere" data-th-text="#{frag-entete.a.films}"></a></li>
-                <li data-sec-authorize="hasRole('ADMIN')"><a href="/enchere/ajouter" data-th-text="#{frag-entete.a.films.creer}"></a></li>
+                <li><a href="/" data-th-text="#{frag_a_accueil}"></a></li>
+                <li ><a href="/enchere" data-th-text="#{frag_a_enchere}"></a></li>
+                <li ><a href="/enchere/ajouter" data-th-text="#{frag_a_enchere_ajouter}"></a></li>
                 <li data-sec-authorize="!isAuthenticated()"><a href="/login">Login</a></li>
                 <li data-sec-authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
-
-
             </ul>
+        </div>
     </nav>
+
 </header>
 
 <main data-th-replace="${content}"></main>
