@@ -20,6 +20,7 @@ public class SecurityConfig {
         // Création d'un gestionnaire d'utilisateurs qui va récupérer les infos depuis la base de données
         JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
 
+
         // Requête SQL pour récupérer les informations utilisateur (identifiant, mot de passe, enabled)
         userDetailsManager.setUsersByUsernameQuery("select  email, mot_de_passe, 1 from UTILISATEURS where email = ?");
         userDetailsManager.setAuthoritiesByUsernameQuery("SELECT pseudo, CASE WHEN administrateur = 1 THEN 'ROLE_ADMIN' ELSE 'ROLE_USER' END FROM utilisateurs WHERE pseudo = ?");

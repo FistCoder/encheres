@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout :: frag_layout(title=~{::title}, content=~{::main}, addRessources=~{::#addRessources})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrer un compte</title>
+    <th:block id="addRessources">
+        <link rel="stylesheet" th:href="@{/css/form.css}">
+    </th:block>
+</head>
+<body>
+<main>
+    <form th:action="@{/register}" th:method="POST">
+
+    </form>
+</main>
+
+</body>
+</html>
+
+<div class="form-container">
+    <h1>Formulaire d'Inscription</h1>
+
+    <form th:action="@{/user/save}" th:object="${user}" method="post">
+
+        <div class="form-group">
+            <label for="pseudo">Pseudo <span class="required">*</span></label>
+            <input type="text"
+                   id="pseudo"
+                   th:field="*{pseudo}"
+                   required
+                   placeholder="Votre pseudo">
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nom <span class="required">*</span></label>
+            <input type="text"
+                   id="nom"
+                   th:field="*{nom}"
+                   required
+                   placeholder="Votre nom de famille">
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prénom <span class="required">*</span></label>
+            <input type="text"
+                   id="prenom"
+                   th:field="*{prenom}"
+                   required
+                   placeholder="Votre prénom">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email"
+                   id="email"
+                   th:field="*{email}"
+                   required
+                   placeholder="votre.email@exemple.com">
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel"
+                   id="telephone"
+                   th:field="*{telephone}"
+                   placeholder="01 23 45 67 89">
+        </div>
+
+        <div class="form-group">
+            <label for="rue">Rue</label>
+            <input type="text"
+                   id="rue"
+                   th:field="*{rue}"
+                   placeholder="Numéro et nom de rue">
+        </div>
+
+        <div class="form-group">
+            <label for="code_postal">Code Postal</label>
+            <input type="text"
+                   id="code_postal"
+                   th:field="*{codePostal}"
+                   placeholder="75000"
+                   pattern="[0-9]{5}">
+        </div>
+
+        <div class="form-group">
+            <label for="ville">Ville</label>
+            <input type="text"
+                   id="ville"
+                   th:field="*{ville}"
+                   placeholder="Votre ville">
+        </div>
+
+        <div class="form-group">
+            <label for="mot_de_passe">Mot de passe <span class="required">*</span></label>
+            <input type="password"
+                   id="mot_de_passe"
+                   th:field="*{motDePasse}"
+                   required
+                   placeholder="Votre mot de passe">
+        </div>
+
+        <div class="form-group">
+            <label for="credit">Crédit</label>
+            <input type="number"
+                   id="credit"
+                   th:field="*{credit}"
+                   min="0"
+                   step="0.01"
+                   placeholder="0.00">
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox"
+                       id="administrateur"
+                       th:field="*{administrateur}">
+                <label for="administrateur">Administrateur</label>
+            </div>
+        </div>
+
+        <button type="submit">Enregistrer</button>
+
+    </form>
+</div>

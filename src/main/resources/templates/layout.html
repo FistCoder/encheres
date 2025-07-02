@@ -1,7 +1,9 @@
-<html data-th-fragment="frag_layout(title, content)">
+<html data-th-fragment="frag_layout(title, content, addRessources)">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style.css">
+
+    <th:block data-th-replace="${addRessources} ?: ~{}"></th:block>
 
 </head>
 <body>
