@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -19,15 +21,41 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
+    public UtilisateurDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public Utilisateur findUtilisateur(int noUtilisateur) {
 
         final String sql = "SELECT * FROM UTILISATEURS WHERE no_Utilisateur = :noUtilisateur ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("no_Utilisateur", noUtilisateur);
+        map.addValue("noUtilisateur", noUtilisateur);
+        System.out.println(noUtilisateur);
 
         return jdbcTemplate.queryForObject(sql, map, new UtilisateurMapper() );
+    }
+
+    @Override
+    public boolean updateUtilisateur(Utilisateur utilisateur) {
+
+        final String sql = "UPDATE UTILISATEURS SET pseudo=:pseudo , nom=:nom , prenom=:prenom , email=:email , telephone=:telephone , " +
+                "rue=:rue , code_postal=:codePostal , ville=:ville , mot_de_passe=:motDePasse ";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("pseudo", utilisateur.getPseudo());
+        map.addValue("nom", utilisateur.getNom());
+        map.addValue("prenom", utilisateur.getPrenom());
+        map.addValue("email", utilisateur.getEmail());
+        map.addValue("telephone", utilisateur.getTelephone());
+        map.addValue("rue", utilisateur.getRue());
+        map.addValue("code_postal", utilisateur.getCodePostal());
+        map.addValue("ville", utilisateur.getVille());
+        map.addValue("motDePasse", utilisateur.getMotDePasse());
+        jdbcTemplate.update(sql, map);
+
+        return true;
+
     }
 
     @Override
@@ -68,11 +96,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
 
     @Override
-    public boolean updateUtilisateur(Utilisateur utilisateur) {
-        return false;
-    }
-
-    @Override
     public boolean deleteUtilisateur(int id) {
         return false;
     }
@@ -86,6 +109,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         @Override
         public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
            Utilisateur utilisateur = new Utilisateur();
+           utilisateur.setNoUtilisateur(rs.getInt("no_Utilisateur"));
            utilisateur.setPseudo(rs.getString("pseudo"));
            utilisateur.setNom(rs.getString("nom"));
            utilisateur.setPrenom(rs.getString("prenom"));
