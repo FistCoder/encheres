@@ -4,7 +4,7 @@ import fr.eni.projet.encheres.bo.Utilisateur;
 
 public interface UtilisateurService {
 
-    public Utilisateur getUtilisateur(String nom);
+    public Utilisateur getUtilisateur(int id);
 
     public Utilisateur createUtilisateur(Utilisateur utilisateur);
 

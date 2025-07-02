@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UtilisateurDAO {
 
-    public Utilisateur findUtilisateur(String email);
+    public Utilisateur findUtilisateur(int noUtilisateur);
 
     public List<Utilisateur> getAllUtilisateurs();
 
