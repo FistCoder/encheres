@@ -1,0 +1,34 @@
+<html data-th-fragment="frag_layout(title, content, addRessources)">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <th:block data-th-replace="${addRessources} ?: ~{}"></th:block>
+
+</head>
+<body>
+<header>
+    <h1 data-th-text="${title}"></h1>
+
+    <nav class="enchere_ctn_nav">
+        <div class="enchere_ctn_nav_auth" data-sec-authorize="isAuthenticated()">
+            <span data-th-text="'Pseudo : ' + ${#authentication.name}"></span>
+        </div>
+        <div class="enchere_ctn_nav_list">
+            <ul>
+                <li><a href="/" data-th-text="#{frag_a_accueil}"></a></li>
+                <li ><a href="/enchere" data-th-text="#{frag_a_enchere}"></a></li>
+                <li ><a href="/enchere/ajouter" data-th-text="#{frag_a_enchere_ajouter}"></a></li>
+                <li data-sec-authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+                <li data-sec-authorize="!isAuthenticated()"><a href="/register">Register</a></li>
+                <li data-sec-authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
+
+<main data-th-replace="${content}"></main>
+
+</body>
+</html>
