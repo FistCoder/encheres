@@ -1,85 +1,88 @@
 package fr.eni.projet.encheres.configuration;
 
+import javax.sql.DataSource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+//import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
-import javax.sql.DataSource;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+    private final String SELECT_USER = "select  email, mot_de_passe, 1 from UTILISATEURS where email = ?";
+    private final String SELECT_ROLES = "SELECT email, administrateur FROM utilisateurs WHERE email = ?";
+
+    /**
+     * Récupération des membres de l'application via la base de données
+     */
     @Bean
     UserDetailsManager userDetailsManager(DataSource dataSource) {
-        // Création d'un gestionnaire d'utilisateurs qui va récupérer les infos depuis la base de données
-        JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
+        jdbcUserDetailsManager.setUsersByUsernameQuery(SELECT_USER);
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(SELECT_ROLES);
 
-        // Requête SQL pour récupérer les informations utilisateur (identifiant, mot de passe, enabled)
-        userDetailsManager.setUsersByUsernameQuery("select  email, mot_de_passe, 1 from UTILISATEURS where email = ?");
-        userDetailsManager.setAuthoritiesByUsernameQuery("SELECT pseudo, CASE WHEN administrateur = 1 THEN 'ROLE_ADMIN' ELSE 'ROLE_USER' END FROM utilisateurs WHERE pseudo = ?");
-
-        // Retourne le gestionnaire configuré
-        return userDetailsManager;
+        return jdbcUserDetailsManager;
     }
 
+    /**
+     * Tout le monde doit accéder à la vue principale Restreindre l’accès des autres
+     * vues à un membre connecté pour le moment
+     */
     @Bean
-        // Définit la chaîne de filtres de sécurité HTTP
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
             auth
+                    //Permettre aux visiteurs d'accéder à la liste des films
+                    .requestMatchers(HttpMethod.GET, "/login").permitAll()
+                    // Accès à la vue principale
                     .requestMatchers("/").permitAll()
-
-
-                    // Autorise tout le monde à accéder à la racine (/*)
-                    .requestMatchers("/*").permitAll()
-
-                    // Autorise tout le monde à accéder à la racine (/*)
-                    .requestMatchers("/login").permitAll()
-
-                    // Autorise tout le monde à accéder aux fichiers CSS (ex: /css/style.css)
-                    .requestMatchers("/css/*").permitAll()
-
-                    // Autorise tout le monde à accéder aux images (ex: /images/logo.png)
-                    .requestMatchers("/images/*").permitAll()
-
-                    // Bloque toutes les autres requêtes non explicitement autorisées
-                    .anyRequest().denyAll();
+                    // Permettre à tous d'afficher correctement les images et CSS
+                    .requestMatchers("/css/*").permitAll().requestMatchers("/images/*").permitAll()
+                    // Il faut être connecté pour toutes autres URLs
+                    .anyRequest().authenticated();
         });
 
-        // Configuration de la page de connexion personnalisée
+//		//formulaire de connexion par défaut
+//		http.formLogin(Customizer.withDefaults());
+
+
+        // Customiser le formulaire
         http.formLogin(form -> {
-            form
-                    .loginPage("/login")    // Définit la page de login personnalisée à /login
-                    .permitAll()            // Autorise tout le monde à accéder à la page de login
-                    .defaultSuccessUrl("/"); // Après connexion réussie, redirige vers la racine /
+            form.loginPage("/login").permitAll();
+            form.defaultSuccessUrl("/").permitAll();
         });
 
-        // Configuration de la déconnexion
-        http.logout(logout -> {
-            logout
-                    // Permet de se déconnecter via une requête GET vers /logout (à noter : en général, on préfère POST pour plus de sécurité)
-                    .logoutRequestMatcher(request ->
-                            request.getMethod().equals("GET") && request.getRequestURI().endsWith("/logout")
-                    )
-                    .invalidateHttpSession(true)   // Invalide la session HTTP lors de la déconnexion
-                    .clearAuthentication(true)     // Efface les données d’authentification
-                    .deleteCookies("JSESSIONID")   // Supprime le cookie de session
-                    .logoutSuccessUrl("/")          // Redirige vers la page d’accueil après déconnexion
-                    .permitAll();                  // Autorise tout le monde à accéder à la déconnexion
-        });
+        // /logout --> vider la session et le contexte de sécurité
+        http.logout(logout ->
+                logout
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/").permitAll());
 
-        // Construire et retourner la configuration de sécurité complète
         return http.build();
+
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
