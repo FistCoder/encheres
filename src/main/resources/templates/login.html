@@ -11,20 +11,18 @@
 <main>
 
 
-<form data-th-action="@{/login}" method="post">
+<form class="enchere_login_form" data-th-action="@{/login}" method="post">
 
-
-
-    <ul class="">
-        <li>
+    <ul class="enchere_login_form_list">
+        <li class="enchere_login_form_item">
             <label for="username" >Login</label>
-            <input id="username" name="username" value="@email.fr">
+            <input type="email" id="username" name="username" value="@email.fr">
         </li>
-        <li>
+        <li class="enchere_login_form_item">
             <label for="password" >Password</label>
             <input id="password" name="password" type="password">
         </li>
-        <li>
+        <li class="enchere_login_form_item">
             <button type="submit">Login</button>
 
         </li>

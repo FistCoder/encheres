@@ -10,11 +10,11 @@
 <header>
     <h1 data-th-text="${title}"></h1>
 
-    <nav>
-        <div class="header-card" data-sec-authorize="isAuthenticated()">
+    <nav class="enchere_ctn_nav">
+        <div class="enchere_ctn_nav_auth" data-sec-authorize="isAuthenticated()">
             <span data-th-text="'Pseudo : ' + ${#authentication.name}"></span>
         </div>
-        <div>
+        <div class="enchere_ctn_nav_list">
             <ul>
                 <li><a href="/" data-th-text="#{frag_a_accueil}"></a></li>
                 <li ><a href="/enchere" data-th-text="#{frag_a_enchere}"></a></li>

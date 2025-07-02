@@ -51,6 +51,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/login").permitAll()
                     // Accès à la vue principale
                     .requestMatchers("/").permitAll()
+                    .requestMatchers("/register").denyAll()
                     // Permettre à tous d'afficher correctement les images et CSS
                     .requestMatchers("/css/*").permitAll().requestMatchers("/images/*").permitAll()
                     // Il faut être connecté pour toutes autres URLs

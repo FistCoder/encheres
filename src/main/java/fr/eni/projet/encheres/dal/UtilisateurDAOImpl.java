@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO{
     @Override
-    public Utilisateur getUtilisateur(String email) {
+    public Utilisateur findUtilisateur(String email) {
         return null;
     }
 
