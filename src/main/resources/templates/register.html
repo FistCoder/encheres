@@ -20,7 +20,7 @@
 <div class="form-container">
     <h1>Formulaire d'Inscription</h1>
 
-    <form th:action="@{/user/save}" th:object="${user}" method="post">
+    <form th:action="@{/register}" th:object="${user}" method="post">
 
         <div class="form-group">
             <label for="pseudo">Pseudo <span class="required">*</span></label>
@@ -100,24 +100,6 @@
                    placeholder="Votre mot de passe">
         </div>
 
-        <div class="form-group">
-            <label for="credit">Crédit</label>
-            <input type="number"
-                   id="credit"
-                   th:field="*{credit}"
-                   min="0"
-                   step="0.01"
-                   placeholder="0.00">
-        </div>
-
-        <div class="form-group">
-            <div class="checkbox-group">
-                <input type="checkbox"
-                       id="administrateur"
-                       th:field="*{administrateur}">
-                <label for="administrateur">Administrateur</label>
-            </div>
-        </div>
 
         <button type="submit">Enregistrer</button>
 
