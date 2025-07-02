@@ -6,28 +6,29 @@
 									addRessources=~{})}">
 
 
-
 <body>
 <main>
 
 
-<form class="enchere_login_form" data-th-action="@{/login}" method="post">
+    <form class="enchere_login_form" data-th-action="@{/login}" method="post">
 
-    <ul class="enchere_login_form_list">
-        <li class="enchere_login_form_item">
-            <label for="username" >Login</label>
-            <input type="email" id="username" name="username" value="@email.fr">
-        </li>
-        <li class="enchere_login_form_item">
-            <label for="password" >Password</label>
-            <input id="password" name="password" type="password">
-        </li>
-        <li class="enchere_login_form_item">
-            <button type="submit">Login</button>
+        <ul class="enchere_login_form_list">
+            <li class="enchere_login_form_item">
+                <label for="username">Login</label>
+                <input type="email" id="username" name="username"
+                       placeholder="Enter your email" required>
+            </li>
+            <li class="enchere_login_form_item">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password"
+                       placeholder="Enter your password" required>
+            </li>
+            <li class="enchere_login_form_item">
+                <button type="submit">Login</button>
 
-        </li>
-    </ul>
-</form>
+            </li>
+        </ul>
+    </form>
 </main>
 </body>
 </html>

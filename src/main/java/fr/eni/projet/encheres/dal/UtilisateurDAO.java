@@ -17,5 +17,7 @@ public interface UtilisateurDAO {
     public boolean deleteUtilisateur(int id);
 
 
+    Utilisateur findByEmail(String username);
+
 
 }

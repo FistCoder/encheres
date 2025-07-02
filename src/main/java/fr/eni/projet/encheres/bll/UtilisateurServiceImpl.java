@@ -36,4 +36,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
         return utilisateurDAO.addUtilisateur(utilisateur) ? utilisateur : null;
     }
+    @Override
+    public Utilisateur ckeckEmail(String username) {
+        return utilisateurDAO.findByEmail(username);
+    }
+
 }

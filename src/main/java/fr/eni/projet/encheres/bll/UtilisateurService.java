@@ -8,4 +8,7 @@ public interface UtilisateurService {
 
     public Utilisateur createUtilisateur(Utilisateur utilisateur);
 
+    public Utilisateur ckeckEmail(String username);
+
+
 }
