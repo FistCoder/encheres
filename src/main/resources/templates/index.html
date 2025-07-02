@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html data-th-replace="~{layout :: frag_layout(title=#{frag_a_accueil},
+                                                content= ~{::main}, addRessources=~{})} ">
+<main>
+  <section>
+    <h1 style="text-align: center;" data-th-text="#{index.h1}"></h1>
+  </section>
+</main>
 </html>
