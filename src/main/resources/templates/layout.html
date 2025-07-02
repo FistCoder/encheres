@@ -20,6 +20,7 @@
                 <li ><a href="/enchere" data-th-text="#{frag_a_enchere}"></a></li>
                 <li ><a href="/enchere/ajouter" data-th-text="#{frag_a_enchere_ajouter}"></a></li>
                 <li data-sec-authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+                <li data-sec-authorize="!isAuthenticated()"><a href="/register">Register</a></li>
                 <li data-sec-authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
         </div>
