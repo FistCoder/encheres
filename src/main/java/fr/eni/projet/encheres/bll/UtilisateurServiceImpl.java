@@ -2,10 +2,8 @@ package fr.eni.projet.encheres.bll;
 
 import fr.eni.projet.encheres.bo.Utilisateur;
 import fr.eni.projet.encheres.dal.UtilisateurDAO;
-import fr.eni.projet.encheres.dal.UtilisateurDAOImpl;
 import fr.eni.projet.encheres.exceptions.InvalidLoginException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +14,7 @@ import org.springframework.stereotype.Service;
 public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private UtilisateurDAO utilisateurDAO;
-    @Autowired
-    private UtilisateurDAOImpl utilisateurDAOImpl;
 
 
     public UtilisateurServiceImpl(UtilisateurDAO utilisateurDAO) {
@@ -35,9 +28,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Utilisateur createUtilisateur(Utilisateur utilisateur) {
-        utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
-        return utilisateurDAO.addUtilisateur(utilisateur) ? utilisateur : null;
+    public void createUtilisateur(Utilisateur utilisateur) {
+        utilisateurDAO.addUtilisateur(utilisateur);
     }
 
 

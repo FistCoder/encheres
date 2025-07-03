@@ -25,14 +25,14 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute("user") Utilisateur utilisateur) {
-        Utilisateur newUser = utilisateurService.createUtilisateur(utilisateur);
-
-        if(newUser != null) {
+        try{
+        utilisateurService.createUtilisateur(utilisateur);
             return "redirect:/login";
-        } else {
-            System.out.println("Error register");
+        } catch(Exception e){
+            //TODO samir Exception handling
+            return "redirect:/register";
         }
-        return "redirect:/register";
+
 
     }
 }

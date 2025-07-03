@@ -10,7 +10,7 @@ public interface UtilisateurDAO {
 
     public List<Utilisateur> getAllUtilisateurs();
 
-    public boolean addUtilisateur(Utilisateur utilisateur);
+    public void addUtilisateur(Utilisateur utilisateur);
 
     public boolean updateUtilisateur(Utilisateur utilisateur);
 

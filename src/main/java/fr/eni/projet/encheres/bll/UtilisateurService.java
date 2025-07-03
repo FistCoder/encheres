@@ -6,7 +6,7 @@ public interface UtilisateurService {
 
     public Utilisateur getUtilisateur(int id);
 
-    public Utilisateur createUtilisateur(Utilisateur utilisateur);
+    public void createUtilisateur(Utilisateur utilisateur);
     public boolean checkEmailExists(String email);
 
 
