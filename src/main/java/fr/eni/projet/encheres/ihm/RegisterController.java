@@ -29,7 +29,7 @@ public class RegisterController {
         utilisateurService.createUtilisateur(utilisateur);
             return "redirect:/login";
         } catch(Exception e){
-            //TODO samir Exception handling
+            //TODO Mihai Exception handling
             return "redirect:/register";
         }
 
