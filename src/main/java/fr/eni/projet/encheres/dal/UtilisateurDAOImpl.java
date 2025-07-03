@@ -77,6 +77,21 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         return false;
     }
 
+
+// (Samir) Check si l'email existe dans la base. Cette requête retourne le nombre de lignes dans la table UTILISATEURS où la colonne email est égale à la valeur donnée (:email).
+@Override
+public int checkEmailExists(String email) {
+    // Prépare la requête SQL pour compter le nombre d'utilisateurs avec cet email
+    String sql = "SELECT COUNT(*) FROM UTILISATEURS WHERE email = :email";
+    // Crée un map pour lier le paramètre email à la requête
+    MapSqlParameterSource map = new MapSqlParameterSource();
+    map.addValue("email", email);
+    // Exécute la requête et récupère le résultat (nombre d'occurrences)
+    int count = jdbcTemplate.queryForObject(sql, map, Integer.class);
+    // Retourne le nombre d'utilisateurs trouvés avec cet email
+    return count;
+}
+
     private class UtilisateurMapper implements RowMapper<Utilisateur> {
         @Override
         public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {

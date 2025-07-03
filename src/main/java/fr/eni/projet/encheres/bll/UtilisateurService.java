@@ -7,8 +7,7 @@ public interface UtilisateurService {
     public Utilisateur getUtilisateur(int id);
 
     public Utilisateur createUtilisateur(Utilisateur utilisateur);
-
-    public Utilisateur ckeckEmail(String username);
+    public boolean checkEmailExists(String email);
 
 
 }
