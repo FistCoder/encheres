@@ -21,11 +21,11 @@ public class UtilisateurController {
     }
 
     @GetMapping("/profil")
-    public String displayProfil(Model model){
-    //public String displayProfil(Model model, @ModelAttribute("membreSession") Utilisateur membreSession) {
+    //public String displayProfil(Model model){
+    public String displayProfil(Model model, @ModelAttribute("membreSession") Utilisateur membreSession) {
 
-       // Utilisateur user = utilisateurService.consulterUtilisateurById(membreSession.getNoUtilisateur());
-        Utilisateur user = utilisateurService.consulterUtilisateurById(1);
+       Utilisateur user = utilisateurService.consulterUtilisateurById(membreSession.getNoUtilisateur());
+       //Utilisateur user = utilisateurService.consulterUtilisateurById(1);
         model.addAttribute("user", user);
 
         /*if(membreSession != null) {

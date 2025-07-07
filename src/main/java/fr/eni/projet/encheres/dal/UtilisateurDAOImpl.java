@@ -101,8 +101,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
 
     @Override
-    public Utilisateur findByEmail(String username) {
-        return null;
+    public Utilisateur findByEmail(String email) {
+        String sql = "SELECT * FROM UTILISATEURS WHERE email = :email";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("email", email);
+
+        return jdbcTemplate.queryForObject(sql, map, new UtilisateurMapper());
     }
 
     private class UtilisateurMapper implements RowMapper<Utilisateur> {
