@@ -18,7 +18,6 @@ import java.util.List;
 @Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
-    @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public UtilisateurDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {

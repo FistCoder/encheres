@@ -12,7 +12,7 @@
 
     <nav class="enchere_ctn_nav">
         <div class="enchere_ctn_nav_auth" data-sec-authorize="isAuthenticated()">
-            <span data-th-text="'Pseudo : ' + ${#authentication.name}"></span>
+            "'Pseudo : ' + ${#authentication.name}"></span>
         </div>
         <div class="enchere_ctn_nav_list">
             <ul>
@@ -21,7 +21,7 @@
                 <li ><a href="/enchere/ajouter" data-th-text="#{frag_a_enchere_ajouter}"></a></li>
                 <li data-sec-authorize="!isAuthenticated()"><a href="/login">Login</a></li>
                 <li data-sec-authorize="!isAuthenticated()"><a href="/register">Register</a></li>
-                <li data-sec-authorize="isAuthenticated()"><a href="/profil">Profil</a></li>
+                <li data-sec-authorize="!isAuthenticated()"><a href="/profil">Profil</a></li>
                 <li data-sec-authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
         </div>

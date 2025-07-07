@@ -17,14 +17,18 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UtilisateurDAO utilisateurDAO;
+    private final UtilisateurDAO utilisateurDAO;
+
+    public UtilisateurServiceImpl(UtilisateurDAO utilisateurDAO) {
+        this.utilisateurDAO = utilisateurDAO;
+    }
 
 
     @Override
     public Utilisateur getUtilisateur(int id) {
         return utilisateurDAO.findUtilisateur(id);
     }
+
     @Override
     public Utilisateur consulterUtilisateurById(int noUtilisateur) {
 
@@ -36,6 +40,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateurDAO.updateUtilisateur(utilisateur);
     }
 
+
     @Override
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
         utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
@@ -45,4 +50,5 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur ckeckEmail(String username) {
         return utilisateurDAO.findByEmail(username);
     }
+
 }

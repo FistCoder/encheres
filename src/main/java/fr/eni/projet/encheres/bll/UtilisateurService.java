@@ -12,5 +12,4 @@ public interface UtilisateurService {
 
     public Utilisateur ckeckEmail(String username);
 
-
 }
