@@ -45,7 +45,7 @@ public class UtilisateurController {
                 String email = utilisateur.getUsername();
 
                 // Recherche de l'utilisateur complet à partir de l'email via un service
-                Utilisateur user = utilisateurService.ckeckEmail(email);
+                Utilisateur user = utilisateurService.checkEmailExists(email);
 
                 // Ajoute l'utilisateur au modèle pour qu'il soit accessible dans la vue
                 model.addAttribute("user", user);

@@ -43,15 +43,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     //(Samir) : Ajout de la méthode pour vérifier si l'email existe déjà
     @Override
-    public boolean checkEmailExists(String email) {
-        // Vérifie si l'email existe déjà en base de données via le DAO
-        int noUtilisateur = utilisateurDAO.checkEmailExists(email);
-        // Si aucun utilisateur n'existe avec cet email, on lève une exception
-        if (noUtilisateur == 0) {
-            throw new InvalidLoginException("validation.email.NotUsed");
-        }
-        // Si l'email existe, on retourne null (ou l'utilisateur si besoin)
-        return true ;
+    public Utilisateur checkEmailExists(String email) {
+        return utilisateurDAO.findByEmail(email);
     }
 
 
