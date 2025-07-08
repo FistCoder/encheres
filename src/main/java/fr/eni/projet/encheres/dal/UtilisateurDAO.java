@@ -19,6 +19,6 @@ public interface UtilisateurDAO {
 
 
 
-
+    public Utilisateur findByEmail(String email);
 
 }
