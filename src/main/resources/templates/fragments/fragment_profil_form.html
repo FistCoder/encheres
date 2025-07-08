@@ -1,6 +1,8 @@
 <form xmlns:th="http://www.thymeleaf.org"
     data-th-fragment="frag_profil_form(titreForm, action)" data-th-action="@{${action}}" method="post" data-th-object="${user}" >
 
+    <div>
+
 
     <h1 data-th-text="${titreForm}"></h1>
 
@@ -82,7 +84,12 @@
         <div data-th-if="${!#strings.isEmpty(action)}">
             <button type="submit">Valider</button>
         </div>
+        <div data-th-if="${#strings.isEmpty(action)}">
+            <a th:href="@{/deleteAccount}">Supprimer mon compte</a>
+        </div>
 
+
+    </div>
 
   </form>
 </main>

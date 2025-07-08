@@ -71,6 +71,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
+    public void deleteUtilisateur(String email) {
+        utilisateurDAO.deleteUtilisateur(email);
+    }
+
+    @Override
     public Utilisateur checkEmailExists(String email) {
         return utilisateurDAO.findByEmail(email);
     }

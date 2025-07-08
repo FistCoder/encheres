@@ -6,6 +6,8 @@ import fr.eni.projet.encheres.exceptions.BusinessException;
 import fr.eni.projet.encheres.exceptions.DuplicateUserException;
 import fr.eni.projet.encheres.exceptions.UserValidationException;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,5 +49,16 @@ public class RegisterController {
             model.addAttribute("error", "Une erreur est survenue lors de l'inscription. Veuillez réessayer.");
             return "register";
         }
+    }
+
+    @GetMapping("/deleteAccount")
+    public String deleteUtilisateur(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        utilisateurService.deleteUtilisateur(authentication.getName());
+
+
+        return "redirect:/logout";
     }
 }

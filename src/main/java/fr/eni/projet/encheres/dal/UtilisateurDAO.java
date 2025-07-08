@@ -12,9 +12,9 @@ public interface UtilisateurDAO {
 
     public void addUtilisateur(Utilisateur utilisateur);
 
-    public boolean updateUtilisateur(Utilisateur utilisateur);
+    public void updateUtilisateur(Utilisateur utilisateur);
 
-    public boolean deleteUtilisateur(int id);
+    public void deleteUtilisateur(String email);
     public int checkEmailExists(String email);
 
 

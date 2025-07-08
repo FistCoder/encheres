@@ -27,6 +27,7 @@ body {
 .form-container form {
     display: flex;
     gap: 20px;
+    justify-content: center;
 }
 
 h1 {

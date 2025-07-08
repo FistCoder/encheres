@@ -39,7 +39,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
 
     @Override
-    public boolean updateUtilisateur(Utilisateur utilisateur) {
+    public void updateUtilisateur(Utilisateur utilisateur) {
 
         final String sql = "UPDATE UTILISATEURS SET pseudo=:pseudo , nom=:nom , prenom=:prenom , email=:email , telephone=:telephone , " +
                 "rue=:rue , code_postal=:codePostal , ville=:ville , mot_de_passe=:motDePasse ";
@@ -54,8 +54,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         map.addValue("ville", utilisateur.getVille());
         map.addValue("motDePasse", utilisateur.getMotDePasse());
         jdbcTemplate.update(sql, map);
-
-        return true;
 
     }
 
@@ -96,8 +94,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
 
     @Override
-    public boolean deleteUtilisateur(int id) {
-        return false;
+    public void deleteUtilisateur(String email) {
+        String sql = "DELETE  FROM UTILISATEURS WHERE email = :email";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("email", email);
+
+        jdbcTemplate.update(sql, map);
     }
 
     @Override

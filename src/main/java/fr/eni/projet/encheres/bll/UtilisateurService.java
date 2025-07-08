@@ -8,5 +8,6 @@ public interface UtilisateurService {
     Utilisateur consulterUtilisateurById(int noUtilisateur) throws BusinessException;
     void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
     void createUtilisateur(Utilisateur utilisateur) throws BusinessException;
+    void deleteUtilisateur(String email);
     Utilisateur checkEmailExists(String email);
 }

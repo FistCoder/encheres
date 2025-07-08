@@ -55,6 +55,7 @@ public class SecurityConfig {
                     .requestMatchers("/encheres").permitAll()
                     .requestMatchers("/register").not().authenticated()
                     .requestMatchers("/profil").authenticated()
+                    .requestMatchers("/deleteAccount").authenticated()
                     // Permettre à tous d'afficher correctement les images et CSS
                     .requestMatchers("/css/*").permitAll().requestMatchers("/images/*").permitAll()
                     // Il faut être connecté pour toutes autres URLs
