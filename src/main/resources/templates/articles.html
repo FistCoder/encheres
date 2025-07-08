@@ -1,27 +1,80 @@
 <!DOCTYPE html>
-<html data-th-replace="~{layout :: frag_layout(title=#{frag_a_accueil},
+<html data-th-replace="~{layout :: frag_layout(title=#{frag_a_article},
                                                 content= ~{::main}, addRessources=~{})} ">
 
 <body>
 
 <main>
-    <div>
-        <h1>Article</h1>
-    </div>
-    <section>
-        <div>
-            <h2>Filtres :</h2>
-            <div>
-                <input type="search">
-            </div>
-            <div>
-                <label>Catégories :</label>
-                <select></select>
+    <form th:action="@{/articles}" method="post">
+        <section>
+            <div class="article_ctn_leftgrid">
+                <h2>Filtres :</h2>
+                <div class="marge-class">
+                    <input type="search" placeholder="Rechercher un article" name="search" id="search">
+                </div>
+                <div class="marge-class">
+                    <label>Catégories :</label>
+                    <select name="Catégories">
+                        <option value="Informatique">Informatique</option>
+                        <option value="Mobilier">Mobilier</option>
+                        <option value="Vêtements">Vêtements</option>
+                        <option value="Livres">Livres</option>
+                        <option value="Sport">Sport</option>
+                    </select>
+                </div>
+                <div class="ctn_radio_all">
+
+
+                <div>
+
+                    <div class="ctn_radio_all">
+                        <input  type="radio" name="radio" id="radioAchats">
+                        <label for="radioAchats">Achats</label>
+                    </div>
+                    <div class="ctn_radio_all">
+                        <input type="checkbox" id="enchere_ouverte" name="check">
+                        <label for="enchere_ouverte">Enchères ouvertes</label>
+                    </div>
+                    <div class="ctn_radio_all">
+                        <input type="checkbox" id="mes_encheres" name="check">
+                        <label for="mes_encheres">Mes encheres</label>
+                    </div>
+                    <div class="ctn_radio_all">
+                        <input type="checkbox" id="mes_encheres_remportees" name="check">
+                        <label for="mes_encheres_remportees">Mes enchères remportées</label>
+                    </div>
+                </div>
+                <div>
+
+                    <div class="ctn_radio_all">
+                        <input type="radio" name="radio" id="radioVentes">
+                        <label for="radioVentes">Mes ventes</label>
+                    </div>
+                    <div class="ctn_radio_all">
+                        <input type="checkbox" id="ventes_en_cours" name="check">
+                        <label for="ventes_en_cours">Mes ventes en cours</label>
+                    </div>
+                    <div class="ctn_radio_all">
+                        <input type="checkbox" id="ventes_non_debutees" name="check">
+                        <label for="ventes_non_debutees">Ventes non débutées</label>
+                    </div>
+                    <div class="ctn_radio_all">
+                        <input type="checkbox" id="ventes_terminees" name="check">
+                        <label for="ventes_terminees">Ventes terminées</label>
+                    </div>
+                </div>
+                </div>
+                <div class="marge-class">
+                    <button type="submit">Rechercher</button>
+                </div>
             </div>
 
-        </div>
-        <div></div>
-    </section>
+
+        </section>
+    </form>
+    <div class="article_ctn_rightgrid">
+
+    </div>
 </main>
 </body>
 </html>
