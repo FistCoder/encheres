@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -19,6 +20,9 @@ import java.util.List;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public UtilisateurDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -63,24 +67,23 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
 
     @Override
-    public boolean addUtilisateur(Utilisateur utilisateur) {
+    public void addUtilisateur(Utilisateur utilisateur) {
 
+        String encodedPwd = passwordEncoder.encode(utilisateur.getMotDePasse());
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "Insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) " +
                 "values (:pseudo, :nom, :prenom, :email, :telephone, :rue, :code_postal, :ville, :mot_de_passe, 0, 0)";
-        MapSqlParameterSource map = getMapSqlParameterSource(utilisateur);
+        MapSqlParameterSource map = getMapSqlParameterSource(utilisateur, encodedPwd);
 
         jdbcTemplate.update(sql, map, keyHolder);
 
         if (keyHolder != null && keyHolder.getKey() != null) {
             // Mise à jour de l'identifiant du film auto-généré par la base
             utilisateur.setNoUtilisateur(keyHolder.getKey().intValue());
-            return true;
         }
-            return false;
     }
 
-    private static MapSqlParameterSource getMapSqlParameterSource(Utilisateur utilisateur) {
+    private static MapSqlParameterSource getMapSqlParameterSource(Utilisateur utilisateur, String EncodedMdp) {
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("prenom", utilisateur.getPrenom());
         map.addValue("nom", utilisateur.getNom());
@@ -90,7 +93,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         map.addValue("rue", utilisateur.getRue());
         map.addValue("ville", utilisateur.getVille());
         map.addValue("code_postal", utilisateur.getCodePostal());
-        map.addValue("mot_de_passe", utilisateur.getMotDePasse());
+        map.addValue("mot_de_passe", EncodedMdp);
         return map;
     }
 
@@ -107,6 +110,21 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
         return jdbcTemplate.queryForObject(sql, map, new UtilisateurMapper());
     }
+
+
+// (Samir) Check si l'email existe dans la base. Cette requête retourne le nombre de lignes dans la table UTILISATEURS où la colonne email est égale à la valeur donnée (:email).
+@Override
+public int checkEmailExists(String email) {
+    // Prépare la requête SQL pour compter le nombre d'utilisateurs avec cet email
+    String sql = "SELECT COUNT(*) FROM UTILISATEURS WHERE email = :email";
+    // Crée un map pour lier le paramètre email à la requête
+    MapSqlParameterSource map = new MapSqlParameterSource();
+    map.addValue("email", email);
+    // Exécute la requête et récupère le résultat (nombre d'occurrences)
+    int count = jdbcTemplate.queryForObject(sql, map, Integer.class);
+    // Retourne le nombre d'utilisateurs trouvés avec cet email
+    return count;
+}
 
     private class UtilisateurMapper implements RowMapper<Utilisateur> {
         @Override

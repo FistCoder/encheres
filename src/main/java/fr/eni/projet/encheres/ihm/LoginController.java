@@ -8,10 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import fr.eni.projet.encheres.bll.UtilisateurService;
+
+import fr.eni.projet.encheres.exceptions.InvalidLoginException;
+import org.springframework.ui.Model;
+
+import static fr.eni.projet.encheres.exceptions.InvalidLoginCode.NOT_FOUND;
 
 @Controller
 @SessionAttributes({ "membreEnSession" })
 class LoginController {
+
 
     private ContexteService contexteService;
 
@@ -19,45 +26,19 @@ class LoginController {
         this.contexteService = contexteService;
     }
 
+    private UtilisateurService utilisateurService;
+
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-/*
 
-    @GetMapping("/session")
-    public String getProfile(@AuthenticationPrincipal Utilisateur utilisateurSession) {
-        int id = utilisateurSession.getNoUtilisateur();
-        return "redirect:/";
+
+    // (Samir) : Ajout de la méthode pour vérifier si l'email existe déjà
+    @GetMapping("/login-error")
+    public String login(Model model) {
+        model.addAttribute("error", "Email ou mot de passe incorrect");
+        return "login";
     }
-
-    @GetMapping("/session")
-    String chargerMembreEnSession(@ModelAttribute("membreEnSession") Utilisateur membreEnSession, Principal principal) {
-        System.out.println("Rentré");
-        String email = principal.getName();
-        Utilisateur charger = contexteService.charger(email);
-        if (charger != null) {
-            membreEnSession.setNoUtilisateur(charger.getNoUtilisateur());
-            membreEnSession.setNom(charger.getNom());
-            membreEnSession.setPrenom(charger.getPrenom());
-            membreEnSession.setPseudo(charger.getPseudo());
-
-        } else {
-            membreEnSession.setNom(null);
-            membreEnSession.setPrenom(null);
-            membreEnSession.setPseudo(null);
-
-        }
-        System.out.println(membreEnSession);
-
-        return "redirect:/";
-    }
-*/
-
-
-    /*@ModelAttribute("membreEnSession")
-    public Utilisateur membreEnSession() {
-        System.out.println("Add Attribut Session");
-        return new Utilisateur();
-    }*/
 }

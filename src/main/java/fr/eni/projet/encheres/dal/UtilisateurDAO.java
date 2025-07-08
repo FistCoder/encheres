@@ -10,12 +10,14 @@ public interface UtilisateurDAO {
 
     public List<Utilisateur> getAllUtilisateurs();
 
-    public boolean addUtilisateur(Utilisateur utilisateur);
+    public void addUtilisateur(Utilisateur utilisateur);
 
     public boolean updateUtilisateur(Utilisateur utilisateur);
 
-
     public boolean deleteUtilisateur(int id);
+    public int checkEmailExists(String email);
+
+
 
     public Utilisateur findByEmail(String email);
 

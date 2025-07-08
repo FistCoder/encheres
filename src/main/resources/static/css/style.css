@@ -1,14 +1,16 @@
 /** CSS GENERALE **/
-html{
+html {
     scroll-behavior: smooth;
     height: 100vh;
 }
-main{
+
+main {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
@@ -122,7 +124,6 @@ header {
 }
 
 
-
 .enchere_login_form {
     background-color: #ffffff;
     border: 2px solid #000000;
@@ -165,6 +166,7 @@ input[type="number"]{
     font-size: 16px;
     transition: all 0.3s ease;
     outline: none;
+    margin-bottom: 5px;
 }
 
 input[type="text"]:focus,
@@ -206,6 +208,11 @@ button[type="submit"]:active {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+.form_alert_message {
+    color: #ff0000;
+    font-size: 14px;
+
+}
 
 
 /* Animation d'entrée */
