@@ -25,6 +25,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute("user") Utilisateur utilisateur) {
+
         try{
         utilisateurService.createUtilisateur(utilisateur);
             return "redirect:/login";

@@ -17,8 +17,9 @@
         <div class="enchere_ctn_nav_list">
             <ul>
                 <li><a href="/" data-th-text="#{frag_a_accueil}"></a></li>
-                <li ><a href="/enchere" data-th-text="#{frag_a_enchere}"></a></li>
-                <li ><a href="/enchere/ajouter" data-th-text="#{frag_a_enchere_ajouter}"></a></li>
+<!--                <li ><a href="/enchere" data-th-text="#{frag_a_enchere}"></a></li>-->
+<!--                <li ><a href="/enchere/ajouter" data-th-text="#{frag_a_enchere_ajouter}"></a></li>-->
+                <li data-sec-authorize="isAuthenticated()"><a href="/articles" data-th-text="#{frag_a_article}"></a></li>
                 <li data-sec-authorize="!isAuthenticated()"><a href="/login">Login</a></li>
                 <li data-sec-authorize="!isAuthenticated()"><a href="/register">Register</a></li>
                 <li data-sec-authorize="isAuthenticated()"><a href="/logout">Logout</a></li>

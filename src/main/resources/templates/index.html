@@ -2,8 +2,24 @@
 <html data-th-replace="~{layout :: frag_layout(title=#{frag_a_accueil},
                                                 content= ~{::main}, addRessources=~{})} ">
 <main>
-  <section>
-    <h1 style="text-align: center;" data-th-text="#{index.h1}"></h1>
-  </section>
+    <section>
+        <h1 style="text-align: center;" data-th-text="#{index.h1}"></h1>
+        <table>
+            <thead>
+            <tr>
+                <th>La liste des enchères :</th>
+                <hr>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="enchere : ${encheres}">
+                <td data-th-text="${enchere.dateEnchere}"></td>
+
+                <td data-th-text="${enchere.montant_enchere}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </section>
 </main>
 </html>
