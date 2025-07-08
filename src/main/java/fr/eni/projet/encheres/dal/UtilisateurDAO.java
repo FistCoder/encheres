@@ -21,4 +21,5 @@ public interface UtilisateurDAO {
 
     public Utilisateur findByEmail(String email);
 
+    int checkPseudoExists(String pseudo);
 }

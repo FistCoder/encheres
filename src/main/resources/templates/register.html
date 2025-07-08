@@ -1,9 +1,6 @@
-
-
-
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout :: frag_layout(
-                title=~{::title}, content=~{::main}, addRessources=~{::#addRessources})}">
+<html data-th-replace="~{layout :: frag_layout(
+                title=~{::title}, content=~{::main}, addRessources=~{::#addRessources})}" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Enregistrer un compte</title>
@@ -12,93 +9,99 @@
     </th:block>
 </head>
 <body>
-    <main>
-        <div class="form-container">
-            <h1>Formulaire d'Inscription</h1>
+<main>
+    <div class="form-container">
+        <h1>Formulaire d'Inscription</h1>
 
-            <form th:action="@{/register}" th:object="${user}" method="post">
+        <form method="post" th:action="@{/register}" th:object="${user}">
+
+            <div class="field-container">
 
                 <div class="form-group">
                     <label for="pseudo">Pseudo <span class="required">*</span></label>
-                    <input type="text"
-                           id="pseudo"
-                           th:field="*{pseudo}"
+                    <input id="pseudo"
+                           placeholder="Votre pseudo"
                            required
-                           placeholder="Votre pseudo">
+                           th:field="*{pseudo}"
+                           type="text">
                 </div>
 
                 <div class="form-group">
                     <label for="nom">Nom <span class="required">*</span></label>
-                    <input type="text"
-                           id="nom"
-                           th:field="*{nom}"
+                    <input id="nom"
+                           placeholder="Votre nom de famille"
                            required
-                           placeholder="Votre nom de famille">
+                           th:field="*{nom}"
+                           type="text">
                 </div>
 
                 <div class="form-group">
                     <label for="prenom">Prénom <span class="required">*</span></label>
-                    <input type="text"
-                           id="prenom"
-                           th:field="*{prenom}"
+                    <input id="prenom"
+                           placeholder="Votre prénom"
                            required
-                           placeholder="Votre prénom">
+                           th:field="*{prenom}"
+                           type="text">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email <span class="required">*</span></label>
-                    <input type="email"
-                           id="email"
-                           th:field="*{email}"
+                    <input id="email"
+                           placeholder="votre.email@exemple.com"
                            required
-                           placeholder="votre.email@exemple.com">
+                           th:field="*{email}"
+                           type="email">
                 </div>
 
                 <div class="form-group">
                     <label for="telephone">Téléphone</label>
-                    <input type="tel"
-                           id="telephone"
+                    <input id="telephone"
+                           placeholder="01 23 45 67 89"
                            th:field="*{telephone}"
-                           placeholder="01 23 45 67 89">
+                           type="tel">
                 </div>
+            </div>
+            <div class="field-container">
 
                 <div class="form-group">
                     <label for="rue">Rue</label>
-                    <input type="text"
-                           id="rue"
+                    <input id="rue"
+                           placeholder="Numéro et nom de rue"
                            th:field="*{rue}"
-                           placeholder="Numéro et nom de rue">
+                           type="text">
                 </div>
 
                 <div class="form-group">
                     <label for="code_postal">Code Postal</label>
-                    <input type="text"
-                           id="code_postal"
-                           th:field="*{codePostal}"
+                    <input id="code_postal"
+                           pattern="[0-9]+"
                            placeholder="75000"
-                           pattern="[0-9]{5}">
+                           th:field="*{codePostal}"
+                           type="text">
                 </div>
 
                 <div class="form-group">
                     <label for="ville">Ville</label>
-                    <input type="text"
-                           id="ville"
+                    <input id="ville"
+                           placeholder="Votre ville"
                            th:field="*{ville}"
-                           placeholder="Votre ville">
+                           type="text">
                 </div>
 
                 <div class="form-group">
                     <label for="mot_de_passe">Mot de passe <span class="required">*</span></label>
-                    <input type="password"
-                           id="mot_de_passe"
-                           th:field="*{motDePasse}"
+                    <input id="mot_de_passe"
+                           placeholder="Votre mot de passe"
                            required
-                           placeholder="Votre mot de passe">
+                           th:field="*{motDePasse}"
+                           type="password">
                 </div>
                 <button type="submit">Enregistrer</button>
-            </form>
-        </div>
-    </main>
+            </div>
+
+        </form>
+    </div>
+</main>
 
 </body>
 </html>

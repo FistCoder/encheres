@@ -1,58 +1,53 @@
 package fr.eni.projet.encheres.bo;
 
 import jakarta.validation.constraints.*;
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Utilisateur {
 
-    @NotBlank
     private int noUtilisateur;
 
     @NotBlank
-    @Max(30)
+    @Size(max = 30)
     private String pseudo;
 
     @NotBlank
-    @Max(30)
+    @Size(max = 30)
     private String nom;
 
     @NotBlank
-    @Max(30)
+    @Size(max = 30)
     private String prenom;
 
     @NotBlank
-    @Max(50)
+    @Size(max = 50)
     @Email
     @Pattern(regexp = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
     private String email;
 
-    @Max(15)
+    @Size(max = 15)
     private String telephone;
 
-    @NotBlank
-    @Max(30)
+    @Size(max = 30)
     private String rue;
 
-    @NotBlank
-    @Max(10)
+    @Min(0)
+    @Max(99999)
     private int codePostal;
 
-    @NotBlank
-    @Max(50)
+    @Size(max = 50)
     private String ville;
 
     @NotBlank
-    @Size(min = 2, max=80)
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{2,80}$")
+    @Size(min = 2, max = 80)
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$")
     private String motDePasse;
 
-    @NotBlank
+    @Min(0)
     private int credit;
 
-    @NotBlank
     private boolean administrateur;
 
 

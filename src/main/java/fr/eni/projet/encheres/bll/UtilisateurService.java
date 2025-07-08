@@ -1,15 +1,12 @@
 package fr.eni.projet.encheres.bll;
 
 import fr.eni.projet.encheres.bo.Utilisateur;
+import fr.eni.projet.encheres.exceptions.BusinessException;
 
 public interface UtilisateurService {
-    Utilisateur consulterUtilisateurById(int noUtilisateur);
-
-    void updateUtilisateur(Utilisateur utilisateur);
-
-    public Utilisateur getUtilisateur(int id);
-
-    public void createUtilisateur(Utilisateur utilisateur);
-    public Utilisateur checkEmailExists(String email);
-
+    Utilisateur getUtilisateur(int id) throws BusinessException;
+    Utilisateur consulterUtilisateurById(int noUtilisateur) throws BusinessException;
+    void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
+    void createUtilisateur(Utilisateur utilisateur) throws BusinessException;
+    Utilisateur checkEmailExists(String email);
 }
