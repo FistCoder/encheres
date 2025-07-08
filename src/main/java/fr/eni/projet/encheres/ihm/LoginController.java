@@ -2,6 +2,8 @@ package fr.eni.projet.encheres.ihm;
 
 import fr.eni.projet.encheres.bll.ContexteService;
 import fr.eni.projet.encheres.bo.Utilisateur;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,15 +19,28 @@ class LoginController {
         this.contexteService = contexteService;
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+/*
+
+    @GetMapping("/session")
+    public String getProfile(@AuthenticationPrincipal Utilisateur utilisateurSession) {
+        int id = utilisateurSession.getNoUtilisateur();
+        return "redirect:/";
+    }
+
     @GetMapping("/session")
     String chargerMembreEnSession(@ModelAttribute("membreEnSession") Utilisateur membreEnSession, Principal principal) {
+        System.out.println("Rentré");
         String email = principal.getName();
-        Utilisateur aCharger = contexteService.charger(email);
-        if (aCharger != null) {
-            membreEnSession.setNoUtilisateur(aCharger.getNoUtilisateur());
-            membreEnSession.setNom(aCharger.getNom());
-            membreEnSession.setPrenom(aCharger.getPrenom());
-            membreEnSession.setPseudo(aCharger.getPseudo());
+        Utilisateur charger = contexteService.charger(email);
+        if (charger != null) {
+            membreEnSession.setNoUtilisateur(charger.getNoUtilisateur());
+            membreEnSession.setNom(charger.getNom());
+            membreEnSession.setPrenom(charger.getPrenom());
+            membreEnSession.setPseudo(charger.getPseudo());
 
         } else {
             membreEnSession.setNom(null);
@@ -37,9 +52,12 @@ class LoginController {
 
         return "redirect:/";
     }
+*/
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+
+    /*@ModelAttribute("membreEnSession")
+    public Utilisateur membreEnSession() {
+        System.out.println("Add Attribut Session");
+        return new Utilisateur();
+    }*/
 }

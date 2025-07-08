@@ -108,6 +108,37 @@ button[type="submit"]:active {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+a.btn-like-button {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    margin-top: 20px;
+}
+
+a.btn-like-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+a.btn-like-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Animation d'entrée */
 @keyframes fadeInUp {
     from {

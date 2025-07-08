@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout :: frag_layout(
+                title=~{::title}, content=~{::main}, addRessources=~{::#addRessources})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block id="addRessources">
+        <link rel="stylesheet" th:href="@{/css/form.css}">
+    </th:block>
 </head>
 <body>
     <main>
-        <form  data-th-replace="~{fragments/fragment_profil_form :: frag_profil_form(#{'Mon profil'}, ~{})}">
+        <div class="form-container">
+        <form  data-th-replace="~{fragments/fragment_profil_form :: frag_profil_form(#{label.form}, ~{})}">
         </form>
+        </div>
     </main>
 </body>
 </html>
