@@ -35,7 +35,7 @@ public class Utilisateur {
 
     @Min(0)
     @Max(99999)
-    private int codePostal;
+    private String codePostal;
 
     @Size(max = 50)
     private String ville;
@@ -57,7 +57,7 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, int codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+    public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -128,11 +128,11 @@ public class Utilisateur {
         this.rue = rue;
     }
 
-    public int getCodePostal() {
+    public String getCodePostal() {
         return codePostal;
     }
 
-    public void setCodePostal(int codePostal) {
+    public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
 
