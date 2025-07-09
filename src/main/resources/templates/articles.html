@@ -5,12 +5,12 @@
 <body>
 
 <main>
-    <form th:action="@{/articles}" method="post">
+    <form method="post" th:action="@{/articles}">
         <section>
             <div class="article_ctn_leftgrid">
                 <h2>Filtres :</h2>
                 <div class="marge-class">
-                    <input type="search" placeholder="Rechercher un article" name="search" id="search">
+                    <input id="search" name="search" placeholder="Rechercher un article" type="search">
                 </div>
                 <div class="marge-class">
                     <label>Catégories :</label>
@@ -25,48 +25,48 @@
                 <div class="ctn_radio_all">
 
 
-                <div>
-                    <label>
-                        <input class="toggle" id="toggle" type="checkbox">
-                        <span class="check"></span>
-                    </label>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span>Achat</span>
+                        <label>
+                            <input class="toggle" id="toggle" type="checkbox">
+                            <span class="check"></span>
+                        </label>
+                            <span>Vente</span>
 
-                    <div class="ctn_radio_all">
-                        <input  type="radio" name="radio" id="radioAchats">
-                        <label for="radioAchats">Achats</label>
-                    </div>
-                    <div class="ctn_radio_all">
-                        <input type="checkbox" id="enchere_ouverte" name="check">
-                        <label for="enchere_ouverte">Enchères ouvertes</label>
-                    </div>
-                    <div class="ctn_radio_all">
-                        <input type="checkbox" id="mes_encheres" name="check">
-                        <label for="mes_encheres">Mes encheres</label>
-                    </div>
-                    <div class="ctn_radio_all">
-                        <input type="checkbox" id="mes_encheres_remportees" name="check">
-                        <label for="mes_encheres_remportees">Mes enchères remportées</label>
-                    </div>
-                </div>
-                <div>
+                        </div>
 
-                    <div class="ctn_radio_all">
-                        <input type="radio" name="radio" id="radioVentes">
-                        <label for="radioVentes">Mes ventes</label>
+                        <div class="achats">
+
+                            <div class="ctn_radio_all">
+                                <input id="enchere_ouverte" name="check" type="checkbox">
+                                <label for="enchere_ouverte">Enchères ouvertes</label>
+                            </div>
+                            <div class="ctn_radio_all">
+                                <input id="mes_encheres" name="check" type="checkbox">
+                                <label for="mes_encheres">Mes encheres</label>
+                            </div>
+                            <div class="ctn_radio_all">
+                                <input id="mes_encheres_remportees" name="check" type="checkbox">
+                                <label for="mes_encheres_remportees">Mes enchères remportées</label>
+                            </div>
+                        </div>
+                        <div class="ventes">
+
+                            <div class="ctn_radio_all">
+                                <input id="ventes_en_cours" name="check" type="checkbox">
+                                <label for="ventes_en_cours">Mes ventes en cours</label>
+                            </div>
+                            <div class="ctn_radio_all">
+                                <input id="ventes_non_debutees" name="check" type="checkbox">
+                                <label for="ventes_non_debutees">Ventes non débutées</label>
+                            </div>
+                            <div class="ctn_radio_all">
+                                <input id="ventes_terminees" name="check" type="checkbox">
+                                <label for="ventes_terminees">Ventes terminées</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ctn_radio_all">
-                        <input type="checkbox" id="ventes_en_cours" name="check">
-                        <label for="ventes_en_cours">Mes ventes en cours</label>
-                    </div>
-                    <div class="ctn_radio_all">
-                        <input type="checkbox" id="ventes_non_debutees" name="check">
-                        <label for="ventes_non_debutees">Ventes non débutées</label>
-                    </div>
-                    <div class="ctn_radio_all">
-                        <input type="checkbox" id="ventes_terminees" name="check">
-                        <label for="ventes_terminees">Ventes terminées</label>
-                    </div>
-                </div>
                 </div>
                 <div class="marge-class">
                     <button type="submit">Rechercher</button>
