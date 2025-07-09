@@ -51,6 +51,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/login").permitAll()
                     // Accès à la vue principale
                     .requestMatchers("/").permitAll()
+                    .requestMatchers("/error").permitAll()
                     .requestMatchers("/articles").authenticated()
                     .requestMatchers("/encheres").permitAll()
                     .requestMatchers("/register").not().authenticated()

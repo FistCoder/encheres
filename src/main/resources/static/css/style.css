@@ -6,9 +6,7 @@ html {
 
 main {
     margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 5px;
+
     height: auto;
 }
 
@@ -238,6 +236,14 @@ button[type="submit"]:active {
 
 
 /*Style pour les articles*/
+
+.ctn_grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;
+}
+
+
 .article_ctn_rightgrid{
     border: 2px solid #000000;
 }

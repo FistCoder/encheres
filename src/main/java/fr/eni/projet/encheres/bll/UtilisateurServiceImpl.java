@@ -8,6 +8,8 @@ import fr.eni.projet.encheres.exceptions.UserValidationException;
 import org.springframework.stereotype.Service;
 import java.util.regex.Pattern;
 
+import static java.lang.Integer.parseInt;
+
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 
@@ -105,7 +107,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         }
 
         // Validation du code postal
-        if (utilisateur.getCodePostal() < 0 || utilisateur.getCodePostal() > 99999) {
+        if (parseInt(utilisateur.getCodePostal()) < 0 || parseInt(utilisateur.getCodePostal()) > 99999) {
             errors.append("Code postal invalide. ");
         }
 

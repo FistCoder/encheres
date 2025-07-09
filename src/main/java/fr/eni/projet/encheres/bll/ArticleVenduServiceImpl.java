@@ -21,7 +21,9 @@ public class ArticleVenduServiceImpl implements ArticleVenduService{
 
 
     @Override
-    public List<ArticleVendu> getAllArticleVenduAndUser() {
-     return articleVenduDAO.getAllArticleVenduAndUser();
+    public List<ArticleVendu> getAllArticleVenduAndUser(String email) {
+
+        return articleVenduDAO.getAllArticleVenduAndUser(email);
     }
+
 }
