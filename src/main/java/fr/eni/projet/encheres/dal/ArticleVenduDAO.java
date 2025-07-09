@@ -5,7 +5,10 @@ import fr.eni.projet.encheres.bo.ArticleVendu;
 import java.util.List;
 
 public interface ArticleVenduDAO {
-    public List<ArticleVendu> getArticleVenduEnCoursByUserId(int noUtilisateur);
-    public List<ArticleVendu> getArticleVenduNonDebuteeByUserId(int noUtilisateur);
-    public List<ArticleVendu> getArticleVenduTermineeByUserId(int noUtilisateur);
+
+    List<ArticleVendu> getAllArticleVenduAndUser();
+    List<ArticleVendu> getArticleVenduEnCoursByUserId(int noUtilisateur);
+    List<ArticleVendu> getArticleVenduNonDebuteeByUserId(int noUtilisateur);
+    List<ArticleVendu> getArticleVenduTermineeByUserId(int noUtilisateur);
+
 }
