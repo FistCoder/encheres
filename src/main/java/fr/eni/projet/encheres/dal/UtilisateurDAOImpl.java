@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,14 +17,11 @@ import java.util.List;
 @Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
+    @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-    public UtilisateurDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @Override
     public Utilisateur findUtilisateur(int noUtilisateur) {
@@ -55,6 +52,11 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         map.addValue("motDePasse", utilisateur.getMotDePasse());
         jdbcTemplate.update(sql, map);
 
+    }
+
+    @Override
+    public boolean deleteUtilisateur(int id) {
+        return false;
     }
 
     @Override
@@ -143,7 +145,6 @@ public int checkEmailExists(String email) {
         @Override
         public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
            Utilisateur utilisateur = new Utilisateur();
-           utilisateur.setNoUtilisateur(rs.getInt("no_Utilisateur"));
            utilisateur.setPseudo(rs.getString("pseudo"));
            utilisateur.setNom(rs.getString("nom"));
            utilisateur.setPrenom(rs.getString("prenom"));

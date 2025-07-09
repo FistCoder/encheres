@@ -12,7 +12,7 @@
 
     <nav class="enchere_ctn_nav">
         <div class="enchere_ctn_nav_auth" data-sec-authorize="isAuthenticated()">
-            "'Pseudo : ' + ${#authentication.name}"></span>
+           <span th:text="'Pseudo : ' + ${#authentication.name}"></span>
         </div>
         <div class="enchere_ctn_nav_list">
             <ul>
