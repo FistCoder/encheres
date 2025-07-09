@@ -54,16 +54,17 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
     }
 
+
     public boolean deleteUtilisateur(int id) {
         return false;
     }
 
-    @Override
+
     public List<Utilisateur> getAllUtilisateurs() {
         return List.of();
     }
 
-    @Override
+
     public void addUtilisateur(Utilisateur utilisateur) {
 
         String encodedPwd = passwordEncoder.encode(utilisateur.getMotDePasse());
@@ -150,7 +151,7 @@ public int checkEmailExists(String email) {
            utilisateur.setEmail(rs.getString("email"));
            utilisateur.setTelephone(rs.getString("telephone"));
            utilisateur.setRue(rs.getString("rue"));
-           utilisateur.setCodePostal(rs.getInt("code_postal"));
+           utilisateur.setCodePostal(rs.getString("code_postal"));
            utilisateur.setVille(rs.getString("ville"));
 
             return utilisateur;
