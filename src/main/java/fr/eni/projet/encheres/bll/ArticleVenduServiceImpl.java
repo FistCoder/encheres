@@ -29,4 +29,29 @@ public class ArticleVenduServiceImpl implements ArticleVenduService{
         return articleVenduDAO.getArticleVenduEnCoursByUserMail(mail);
     }
 
+    @Override
+    public List<ArticleVendu> getArticleVenduNonDebuteeByUserMail(String email) {
+        return articleVenduDAO.getArticleVenduNonDebuteeByUserMail(email);
+    }
+
+    @Override
+    public List<ArticleVendu> getArticleVenduTermineeByUserMail(String email) {
+        return articleVenduDAO.getArticleVenduTermineeByUserMail(email);
+    }
+
+    @Override
+    public List<ArticleVendu> getEnchereOuvertes() {
+        return articleVenduDAO.getEnchereOuvertes();
+    }
+
+    @Override
+    public List<ArticleVendu> getMesEncheresByUserMail(String email) {
+        return articleVenduDAO.getMesEncheresByUserMail(email);
+    }
+
+    @Override
+    public List<ArticleVendu> getEncheresRemporteesByUserMail(String email) {
+        return articleVenduDAO.getEncheresRemporteesByUserMail(email);
+    }
+
 }

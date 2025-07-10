@@ -30,11 +30,34 @@ public class ArticleController {
     public String articles(@RequestParam(name = "check", required = false) String param, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<ArticleVendu> articles;
-        if ("ventes_en_cours".equals(param)) {
-            articles = articlesService.getAllArticleVenduAndUserByMail(authentication.getName());
-        } else {
-            articles = articlesService.getAllArticleVenduAndUser();
+
+        switch (param) {
+            case "ventes_en_cours":
+                articles = articlesService.getAllArticleVenduAndUserByMail(authentication.getName());
+                break;
+            case "ventes_non_debutees":
+                // Assuming you have a method to get user ID from email in your service
+                articles = articlesService.getArticleVenduNonDebuteeByUserMail(authentication.getName());
+                break;
+            case "ventes_terminees":
+                articles = articlesService.getArticleVenduTermineeByUserMail(authentication.getName());
+                break;
+            case "enchere_ouverte":
+                articles = articlesService.getEnchereOuvertes();
+                break;
+            case "mes_encheres":
+                // You'll need to add this method to your DAO and Service
+                articles = articlesService.getMesEncheresByUserMail(authentication.getName());
+                break;
+            case "mes_encheres_remportees":
+                // You'll need to add this method to your DAO and Service
+                articles = articlesService.getEncheresRemporteesByUserMail(authentication.getName());
+                break;
+            default:
+                articles = articlesService.getAllArticleVenduAndUser();
+                break;
         }
+
         model.addAttribute("articles", articles);
         return "articles";
     }
