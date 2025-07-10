@@ -84,7 +84,7 @@
                 <a th:href="@{/profil/update}" class="btn-like-button">Modifier</a>
             </div>
             <div data-th-if="${!#strings.isEmpty(action)}">
-                <button type="submit">Valider</button>
+                <button class="btn-like-button_val"  type="submit">Valider</button>
             </div>
             <div data-th-if="${#strings.isEmpty(action)}">
                 <a class="btn-like-button_sup" th:href="@{/deleteAccount}">Supprimer mon compte</a>
