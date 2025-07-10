@@ -84,7 +84,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
     @Override
     public List<ArticleVendu> getArticleVenduNonDebuteeByUserMail(String email) {
-        String sql = select_from + " WHERE GETDATE()<date_debut_encheres AND email = :email;";
+        String sql = select_from + " WHERE GETDATE()<date_debut_encheres AND email = :email" +
+                " ORDER BY av.no_article;";
 
         MapSqlParameterSource params = new MapSqlParameterSource("email", email);
 
@@ -94,7 +95,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
     @Override
     public List<ArticleVendu> getArticleVenduTermineeByUserMail(String email) {
-        String sql = select_from + " WHERE  GETDATE()<date_fin_encheres  and email = :email;";
+        String sql = select_from + " WHERE  GETDATE()<date_fin_encheres  and email = :email" +
+                " ORDER BY av.no_article;";
 
         MapSqlParameterSource params = new MapSqlParameterSource("email", email);
 
@@ -103,14 +105,16 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
     @Override
     public List<ArticleVendu> getEnchereOuvertes() {
-        String sql = select_from + " WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres;";
+        String sql = select_from + " WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres" +
+                "   ORDER BY av.no_article;";
 
         return jdbcTemplate.query(sql, new ArticleVenduExtractor());
     }
 
     @Override
     public List<ArticleVendu> getMesEncheresByUserMail(String email) {
-        String sql = select_from + " WHERE email = :email ;";
+        String sql = select_from + " WHERE email = :email " +
+                "   ORDER BY av.no_article;";
 
         MapSqlParameterSource params = new MapSqlParameterSource("email", email);
 
@@ -119,7 +123,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
     @Override
     public List<ArticleVendu> getEncheresRemporteesByUserMail(String email) {
-        String sql = select_from + " WHERE e.no_utilisateur = :id and av.prix_vente = e.montant_enchere and GETDATE()>date_fin_encheres;";
+        String sql = select_from + " WHERE email = :email and av.prix_vente = e.montant_enchere and GETDATE()>date_fin_encheres" +
+                "   ORDER BY av.no_article;";
 
         MapSqlParameterSource params = new MapSqlParameterSource("email", email);
 
