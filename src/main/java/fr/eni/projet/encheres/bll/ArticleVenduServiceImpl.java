@@ -54,4 +54,29 @@ public class ArticleVenduServiceImpl implements ArticleVenduService{
         return articleVenduDAO.getEncheresRemporteesByUserMail(email);
     }
 
+    @Override
+    public List<ArticleVendu> getArticleVenduNonDebuteeByUserMail(String email) {
+        return List.of();
+    }
+
+    @Override
+    public List<ArticleVendu> getArticleVenduTermineeByUserMail(String email) {
+        return List.of();
+    }
+
+    @Override
+    public List<ArticleVendu> getEnchereOuvertes() {
+        return List.of();
+    }
+
+    @Override
+    public List<ArticleVendu> getMesEncheresByUserMail(String email) {
+        return List.of();
+    }
+
+    @Override
+    public List<ArticleVendu> getEncheresRemporteesByUserMail(String email) {
+        return List.of();
+    }
+
 }
