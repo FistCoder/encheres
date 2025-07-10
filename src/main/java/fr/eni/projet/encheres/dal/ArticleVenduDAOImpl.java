@@ -21,6 +21,41 @@ import java.util.Map;
 @Repository
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
+    private String select_from = "SELECT " +
+            "    av.no_article," +
+            "    av.nom_article," +
+            "    av.description," +
+            "    av.date_debut_encheres," +
+            "    av.date_fin_encheres," +
+            "    av.prix_initial," +
+            "    av.prix_vente," +
+            "    av.no_utilisateur," +
+            "    av.no_categorie," +
+            "    u.pseudo," +
+            "    u.nom," +
+            "    u.prenom," +
+            "    u.email," +
+            "    u.telephone," +
+            "    u.rue AS rue," +
+            "    u.code_postal AS code_postal," +
+            "    u.ville AS ville," +
+            "    u.mot_de_passe," +
+            "    u.credit," +
+            "    u.administrateur," +
+            "    c.libelle AS libelle," +
+            "    r.rue AS retrait_rue," +
+            "    r.code_postal AS retrait_code_postal," +
+            "    r.ville AS retrait_ville," +
+            "    e.no_enchere," +
+            "    e.date_enchere," +
+            "    e.montant_enchere," +
+            "    e.no_utilisateur AS enchere_no_utilisateur " +
+            "    FROM ARTICLES_VENDUS av" +
+            "    INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur" +
+            "    INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie" +
+            "    LEFT JOIN RETRAITS r ON av.no_article = r.no_article" +
+            "    LEFT JOIN ENCHERES e ON av.no_article = e.no_article";
+
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public ArticleVenduDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {
@@ -29,40 +64,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
     @Override
     public List<ArticleVendu> getAllArticleVenduAndUser() {
-        String sql = "SELECT " +
-                "    av.no_article," +
-                "    av.nom_article," +
-                "    av.description," +
-                "    av.date_debut_encheres," +
-                "    av.date_fin_encheres," +
-                "    av.prix_initial," +
-                "    av.prix_vente," +
-                "    av.no_utilisateur," +
-                "    av.no_categorie," +
-                "    u.pseudo," +
-                "    u.nom," +
-                "    u.prenom," +
-                "    u.email," +
-                "    u.telephone," +
-                "    u.rue AS rue," +
-                "    u.code_postal AS code_postal," +
-                "    u.ville AS ville," +
-                "    u.mot_de_passe," +
-                "    u.credit," +
-                "    u.administrateur," +
-                "    c.libelle AS libelle," +
-                "    r.rue AS retrait_rue," +
-                "    r.code_postal AS retrait_code_postal," +
-                "    r.ville AS retrait_ville," +
-                "    e.no_enchere," +
-                "    e.date_enchere," +
-                "    e.montant_enchere," +
-                "    e.no_utilisateur AS enchere_no_utilisateur " +
-                "    FROM ARTICLES_VENDUS av" +
-                "    INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur" +
-                "    INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie" +
-                "    LEFT JOIN RETRAITS r ON av.no_article = r.no_article" +
-                "    LEFT JOIN ENCHERES e ON av.no_article = e.no_article" +
+        String sql = select_from +
                 "   ORDER BY av.no_article;";
 
         return jdbcTemplate.query(sql, new ArticleVenduExtractor());
@@ -70,41 +72,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
     @Override
     public List<ArticleVendu> getArticleVenduEnCoursByUserMail(String email) {
-        String sql = "SELECT " +
-                "    av.no_article," +
-                "    av.nom_article," +
-                "    av.description," +
-                "    av.date_debut_encheres," +
-                "    av.date_fin_encheres," +
-                "    av.prix_initial," +
-                "    av.prix_vente," +
-                "    av.no_utilisateur," +
-                "    av.no_categorie," +
-                "    u.pseudo," +
-                "    u.nom," +
-                "    u.prenom," +
-                "    u.email," +
-                "    u.telephone," +
-                "    u.rue AS rue," +
-                "    u.code_postal AS code_postal," +
-                "    u.ville AS ville," +
-                "    u.mot_de_passe," +
-                "    u.credit," +
-                "    u.administrateur," +
-                "    c.libelle AS libelle," +
-                "    r.rue AS retrait_rue," +
-                "    r.code_postal AS retrait_code_postal," +
-                "    r.ville AS retrait_ville," +
-                "    e.no_enchere," +
-                "    e.date_enchere," +
-                "    e.montant_enchere," +
-                "    e.no_utilisateur AS enchere_no_utilisateur " +
-                "    FROM ARTICLES_VENDUS av" +
-                "    INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur" +
-                "    INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie" +
-                "    LEFT JOIN RETRAITS r ON av.no_article = r.no_article" +
-                "    LEFT JOIN ENCHERES e ON av.no_article = e.no_article" +
-                "   WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres AND email = :email" +
+        String sql = select_from +
+                "   WHERE GETDATE()>date_debut_encheres AND GETDATE()<=date_fin_encheres AND email = :email" +
                 "   ORDER BY av.no_article;";
 
                 MapSqlParameterSource params = new MapSqlParameterSource("email", email);
@@ -114,13 +83,47 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     }
 
     @Override
-    public List<ArticleVendu> getArticleVenduNonDebuteeByUserId(int noUtilisateur) {
-        return List.of();
+    public List<ArticleVendu> getArticleVenduNonDebuteeByUserMail(String email) {
+        String sql = select_from + " WHERE GETDATE()<date_debut_encheres AND email = :email;";
+
+        MapSqlParameterSource params = new MapSqlParameterSource("email", email);
+
+        return jdbcTemplate.query(sql, params, new ArticleVenduExtractor());
+
     }
 
     @Override
-    public List<ArticleVendu> getArticleVenduTermineeByUserId(int noUtilisateur) {
-        return List.of();
+    public List<ArticleVendu> getArticleVenduTermineeByUserMail(String email) {
+        String sql = select_from + " WHERE  GETDATE()<date_fin_encheres  and email = :email;";
+
+        MapSqlParameterSource params = new MapSqlParameterSource("email", email);
+
+        return jdbcTemplate.query(sql, params, new ArticleVenduExtractor());
+    }
+
+    @Override
+    public List<ArticleVendu> getEnchereOuvertes() {
+        String sql = select_from + " WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres;";
+
+        return jdbcTemplate.query(sql, new ArticleVenduExtractor());
+    }
+
+    @Override
+    public List<ArticleVendu> getMesEncheresByUserMail(String email) {
+        String sql = select_from + " WHERE email = :email ;";
+
+        MapSqlParameterSource params = new MapSqlParameterSource("email", email);
+
+        return jdbcTemplate.query(sql, params, new ArticleVenduExtractor());
+    }
+
+    @Override
+    public List<ArticleVendu> getEncheresRemporteesByUserMail(String email) {
+        String sql = select_from + " WHERE e.no_utilisateur = :id and av.prix_vente = e.montant_enchere and GETDATE()>date_fin_encheres;";
+
+        MapSqlParameterSource params = new MapSqlParameterSource("email", email);
+
+        return jdbcTemplate.query(sql, params, new ArticleVenduExtractor());
     }
 
 
