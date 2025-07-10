@@ -104,10 +104,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
                 "    INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie" +
                 "    LEFT JOIN RETRAITS r ON av.no_article = r.no_article" +
                 "    LEFT JOIN ENCHERES e ON av.no_article = e.no_article" +
-                "   WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres" +
+                "   WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres AND email = :email" +
                 "   ORDER BY av.no_article;";
 
-        return jdbcTemplate.query(sql, new ArticleVenduExtractor());
+                MapSqlParameterSource params = new MapSqlParameterSource("email", email);
+
+        return jdbcTemplate.query(sql, params, new ArticleVenduExtractor());
 
     }
 

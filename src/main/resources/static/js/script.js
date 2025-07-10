@@ -8,9 +8,11 @@ checksVente.forEach(function (check) {
 })
 toggle.addEventListener("click", function () {
     checksAchat.forEach(function (check) {
+        check.querySelector("input").checked = false;
         check.classList.toggle("inactive");
     })
     checksVente.forEach(function (check) {
+        check.querySelector("input").checked = false;
         check.classList.toggle("inactive");
     })
 });
