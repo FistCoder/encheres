@@ -80,7 +80,7 @@ public class UtilisateurController {
 
             utilisateurService.updateUtilisateur(user);
             redirectAttributes.addFlashAttribute("success", "Profil mis à jour avec succès");
-            return "redirect:/profil";
+            return "redirect:/view_profil";
 
         } catch (BusinessException e) {
             model.addAttribute("error", "Erreur lors de la mise à jour du profil: " + e.getMessage());

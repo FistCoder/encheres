@@ -44,12 +44,14 @@
         <div class="article_ctn_rightgrid">
             <th:block th:if="${articles}">
                 <div class="card" th:each="article : ${articles}">
-                    <div class="card-image-placeholder"></div>
+
                     <div class="card-content">
+                        <img style="height: 100px; width: 100px;" src="https://picsum.photos/200" alt="Image de l'article" class="card-img"/>
                         <h3 class="card-title" th:text="${article.getNomArticle()}">Laptop Dell Inspiron</h3>
                         <p class="card-price" th:text="'Prix: ' + ${article.getMiseAPrix()} + '€'">Prix: 350 points</p>
                         <p class="card-date" th:text="${article.getDateFinEncheres()}">Fin de l'enchère: 15/03/2018</p>
-                        <p class="card-vendor" >Vendeur: <a href="#" th:text="${article.getUtilisateur().getPseudo()}" class="card-vendor-link">techstore</a></p>
+                        <p class="card-vendor">Vendeur: <a href="#" th:text="${article.getUtilisateur().getPseudo()}"
+                                                           class="card-vendor-link">techstore</a></p>
                     </div>
                 </div>
             </th:block>
