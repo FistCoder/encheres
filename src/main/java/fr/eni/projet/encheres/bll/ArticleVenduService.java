@@ -5,6 +5,7 @@ import fr.eni.projet.encheres.bo.ArticleVendu;
 import java.util.List;
 
 public interface ArticleVenduService {
-    List<ArticleVendu> getAllArticleVenduAndUser(String email);
+    List<ArticleVendu> getAllArticleVenduAndUser();
+    List<ArticleVendu> getAllArticleVenduAndUserByMail (String mail);
 
 }

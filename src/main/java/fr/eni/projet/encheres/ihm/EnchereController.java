@@ -20,6 +20,7 @@ public class EnchereController {
     public String encheres(Model model) {
 
         model.addAttribute("encheres", enchereService.listerEncheres());
+        model.addAttribute("articles", articlesService.getAllArticleVenduAndUser());
 
 
         return "index";

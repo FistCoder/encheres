@@ -28,7 +28,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
     }
 
     @Override
-    public List<ArticleVendu> getAllArticleVenduAndUser(String email) {
+    public List<ArticleVendu> getAllArticleVenduAndUser() {
         String sql = "SELECT " +
                 "    av.no_article," +
                 "    av.nom_article," +
@@ -63,15 +63,52 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
                 "    INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie" +
                 "    LEFT JOIN RETRAITS r ON av.no_article = r.no_article" +
                 "    LEFT JOIN ENCHERES e ON av.no_article = e.no_article" +
-                "   WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres and u.email = :email" +
                 "   ORDER BY av.no_article;";
 
         return jdbcTemplate.query(sql, new ArticleVenduExtractor());
     }
 
     @Override
-    public List<ArticleVendu> getArticleVenduEnCoursByUserId(int noUtilisateur) {
-        return List.of();
+    public List<ArticleVendu> getArticleVenduEnCoursByUserMail(String email) {
+        String sql = "SELECT " +
+                "    av.no_article," +
+                "    av.nom_article," +
+                "    av.description," +
+                "    av.date_debut_encheres," +
+                "    av.date_fin_encheres," +
+                "    av.prix_initial," +
+                "    av.prix_vente," +
+                "    av.no_utilisateur," +
+                "    av.no_categorie," +
+                "    u.pseudo," +
+                "    u.nom," +
+                "    u.prenom," +
+                "    u.email," +
+                "    u.telephone," +
+                "    u.rue AS rue," +
+                "    u.code_postal AS code_postal," +
+                "    u.ville AS ville," +
+                "    u.mot_de_passe," +
+                "    u.credit," +
+                "    u.administrateur," +
+                "    c.libelle AS libelle," +
+                "    r.rue AS retrait_rue," +
+                "    r.code_postal AS retrait_code_postal," +
+                "    r.ville AS retrait_ville," +
+                "    e.no_enchere," +
+                "    e.date_enchere," +
+                "    e.montant_enchere," +
+                "    e.no_utilisateur AS enchere_no_utilisateur " +
+                "    FROM ARTICLES_VENDUS av" +
+                "    INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur" +
+                "    INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie" +
+                "    LEFT JOIN RETRAITS r ON av.no_article = r.no_article" +
+                "    LEFT JOIN ENCHERES e ON av.no_article = e.no_article" +
+                "   WHERE GETDATE()>date_debut_encheres AND GETDATE()<date_fin_encheres" +
+                "   ORDER BY av.no_article;";
+
+        return jdbcTemplate.query(sql, new ArticleVenduExtractor());
+
     }
 
     @Override

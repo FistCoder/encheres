@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ArticleVenduDAO {
 
-    List<ArticleVendu> getAllArticleVenduAndUser(String email);
-    List<ArticleVendu> getArticleVenduEnCoursByUserId(int noUtilisateur);
+    List<ArticleVendu> getAllArticleVenduAndUser();
+    List<ArticleVendu> getArticleVenduEnCoursByUserMail(String email);
     List<ArticleVendu> getArticleVenduNonDebuteeByUserId(int noUtilisateur);
     List<ArticleVendu> getArticleVenduTermineeByUserId(int noUtilisateur);
 
