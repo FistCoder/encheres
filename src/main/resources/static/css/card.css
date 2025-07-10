@@ -45,6 +45,11 @@
     flex-direction: row;
     gap: 4px;
 }
+.card-content_right{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
 
 .card-title {
     font-weight: bold;
