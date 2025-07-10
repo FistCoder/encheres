@@ -31,6 +31,8 @@ public class ArticleController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<ArticleVendu> articles;
 
+        if(param == null) param = "default";
+
         switch (param) {
             case "ventes_en_cours":
                 articles = articlesService.getAllArticleVenduAndUserByMail(authentication.getName());
