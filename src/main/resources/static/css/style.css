@@ -242,6 +242,10 @@ button[type="submit"]:active {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 5px;
 }
+.form_center{
+    display: flex;
+    justify-content: center;
+}
 
 
 .article_ctn_rightgrid{

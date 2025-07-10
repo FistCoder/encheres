@@ -4,7 +4,7 @@ import fr.eni.projet.encheres.bo.ArticleVendu;
 
 import java.util.List;
 
-public interface ArticleVenduService {
+public interface    ArticleVenduService {
     List<ArticleVendu> getAllArticleVenduAndUser();
     List<ArticleVendu> getAllArticleVenduAndUserByMail (String mail);
     List<ArticleVendu> getArticleVenduNonDebuteeByUserMail(String email);
