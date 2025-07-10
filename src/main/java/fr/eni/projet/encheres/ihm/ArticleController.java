@@ -30,7 +30,7 @@ public class ArticleController {
     public String articles(@RequestParam(name = "check", required = false) String param, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<ArticleVendu> articles;
-
+        if(param == null) param = "default";
         switch (param) {
             case "ventes_en_cours":
                 articles = articlesService.getAllArticleVenduAndUserByMail(authentication.getName());
