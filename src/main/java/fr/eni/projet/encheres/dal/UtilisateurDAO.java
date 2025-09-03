@@ -1,0 +1,25 @@
+package fr.eni.projet.encheres.dal;
+
+import fr.eni.projet.encheres.bo.Utilisateur;
+
+import java.util.List;
+
+public interface UtilisateurDAO {
+
+    public Utilisateur findUtilisateur(int noUtilisateur);
+
+    public List<Utilisateur> getAllUtilisateurs();
+
+    public void addUtilisateur(Utilisateur utilisateur);
+
+    public void updateUtilisateur(Utilisateur utilisateur);
+
+    public void deleteUtilisateur(String email);
+    public int checkEmailExists(String email);
+
+
+
+    public Utilisateur findByEmail(String email);
+
+    int checkPseudoExists(String pseudo);
+}

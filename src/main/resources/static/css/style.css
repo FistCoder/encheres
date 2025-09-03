@@ -1,0 +1,509 @@
+/** CSS GENERALE **/
+html {
+    scroll-behavior: smooth;
+    height: 100vh;
+}
+
+main {
+    margin-top: 2rem;
+
+    height: auto;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    min-height: 100vh;
+    align-items: center;
+}
+
+/** CSS NAV **/
+
+header {
+    background-color: #ffffff;
+    border-bottom: 3px solid #000000;
+    padding: 20px 40px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+td{
+    border-bottom: 2px solid #000000;
+    padding: 5px;
+}
+
+.enchere_ctn_nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.enchere_ctn_nav_auth {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000000;
+}
+
+.enchere_ctn_nav_list ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+}
+
+.enchere_ctn_nav_list li {
+    border-right: 2px solid #000000;
+}
+
+.enchere_ctn_nav_list li:last-child {
+    border-right: none;
+}
+
+.enchere_ctn_nav_list a {
+    display: block;
+    padding: 15px 25px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #000000;
+    border-right: none;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.enchere_ctn_nav_list li:last-child a {
+    border-right: 2px solid #000000;
+}
+
+.enchere_ctn_nav_list a:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    position: relative;
+}
+
+.enchere_ctn_nav_list a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation d'entrée */
+header {
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/** CSS LOGIN **/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.enchere_login_form {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.enchere_login_form_list {
+    list-style: none;
+}
+
+.enchere_login_form_item {
+    margin-bottom: 25px;
+}
+
+.enchere_login_form_item:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"]{
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+input::placeholder {
+    color: #666666;
+    font-style: italic;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+button[type="submit"]:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form_alert_message {
+    color: #ff0000;
+    font-size: 14px;
+
+}
+
+
+/* Animation d'entrée */
+.enchere_login_form {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*Style pour les articles*/
+
+.ctn_grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;
+}
+.form_center{
+    display: flex;
+    justify-content: center;
+}
+
+
+.article_ctn_rightgrid{
+    border: 2px solid #000000;
+}
+.ctn_radio_all{
+    display: flex;
+}
+.ctn_radio_all input{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.article_form {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.marge-class{
+    margin: 10px 0 10px 0;
+}
+.article_section {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.article_ctn_leftgrid {
+    border: 2px solid #000000;
+    padding: 30px;
+    background-color: #ffffff;
+    height: fit-content;
+}
+
+.article_ctn_leftgrid h2 {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 10px;
+}
+
+.filter_item {
+    margin-bottom: 20px;
+}
+
+.filter_group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #000000;
+}
+
+.filter_group:last-of-type {
+    border-bottom: none;
+}
+
+.radio_item,
+.checkbox_item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.radio_item {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+input[type="search"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="search"]:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+select:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="radio"] {
+    border-radius: 50%;
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #000000;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.radio_item label,
+.checkbox_item label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filter_submit {
+    margin-top: 30px;
+}
+
+.article_ctn_rightgrid {
+    min-height: 400px;
+}
+
+.articles_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 60px 0;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 40px;
+}
+
+.hero-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.hero-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.featured-auctions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.auction-card {
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.auction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.auction-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.auction-card p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.auction-card .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.auction-card .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.auction-card .btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none;
+}

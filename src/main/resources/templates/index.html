@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html data-th-replace="~{layout :: frag_layout(title=#{frag_a_accueil},
+                                                content= ~{::main}, addRessources=~{})} ">
+<main>
+    <section>
+        <h1 style="text-align: center;" data-th-text="#{index.h1}"></h1>
+        <table>
+            <thead>
+            <tr>
+                <th>La liste des enchères :</th>
+                <hr>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="enchere : ${encheres}">
+                <td data-th-text="${enchere.dateEnchere}"></td>
+
+                <td data-th-text="${enchere.montant_enchere}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nom d'article</th>
+                <th>Prix</th>
+                <th>Date fin</th>
+                <th>Vendeur</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${articles}">
+                <td data-th-text="${article.getNomArticle()}"></td>
+                <td data-th-text="${article.getPrixVente()}"></td>
+                <td data-th-text="${article.getDateFinEncheres()}"></td>
+                <td data-th-text="${article.getUtilisateur().getPrenom()}"></td>
+                <td data-th-text="${article.getEncheresList()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="article_ctn_rightgrid">
+            <th:block th:if="${articles}">
+                <div class="card" th:each="article : ${articles}">
+
+                    <div class="card-content">
+                        <div class="card-content_left">
+                            <img style="height: 100px; width: 100px;" src="https://placehold.co/100"
+                                 alt="Image de l'article" class="card-img"/>
+                        </div>
+                        <div class="card-content_right">
+                            <h3 class="card-title" th:text="${article.getNomArticle()}">Laptop Dell Inspiron</h3>
+                            <p class="card-price" th:text="'Prix: ' + ${article.getMiseAPrix()} + '€'">Prix: 350 points</p>
+                            <p class="card-date" th:text="${article.getDateFinEncheres()}">Fin de l'enchère: 15/03/2018</p>
+                            <p class="card-vendor">Vendeur: <a href="#" th:text="${article.getUtilisateur().getPseudo()}"
+                                                               class="card-vendor-link">techstore</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </section>
+</main>
+</html>

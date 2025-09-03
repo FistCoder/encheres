@@ -1,0 +1,100 @@
+
+<form xmlns:th="http://www.thymeleaf.org"
+      data-th-fragment="frag_profil_form(titreForm, action)" data-th-action="@{${action}}" method="post"
+      data-th-object="${user}">
+
+        <div>
+
+
+            <h1 data-th-text="${titreForm}"></h1>
+
+            <div class="form-group">
+                <label for="pseudo">Pseudo : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="pseudo" type="text" data-th-field="${user.pseudo}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="pseudo" type="text" data-th-field="${user.pseudo}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="nom" type="text" data-th-field="${user.nom}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="nom" type="text" data-th-field="${user.nom}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="prenom"> Prénom : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="prenom" type="text" data-th-field="${user.prenom}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="prenom" type="text" data-th-field="${user.prenom}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="email"> Email : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="email" type="text" data-th-field="${user.email}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="email" type="text" data-th-field="${user.email}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="tel">Téléphone : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="tel" type="text" data-th-field="${user.telephone}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="tel" type="text" data-th-field="${user.telephone}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="rue">Rue : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="rue" type="text" data-th-field="${user.rue}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="rue" type="text" data-th-field="${user.rue}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="codePostal">Code postal : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="codePostal" type="number" data-th-field="${user.codePostal}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="codePostal" type="number" data-th-field="${user.codePostal}"/>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="ville"> Ville : </label>
+                <th:block data-th-if="${#strings.isEmpty(action)}">
+                    <input id="ville" type="text" data-th-field="${user.ville}" readonly/>
+                </th:block>
+                <th:block data-th-if="${!#strings.isEmpty(action)}">
+                    <input id="ville" type="text" data-th-field="${user.ville}"/>
+                </th:block>
+            </div>
+            <div data-th-if="${#strings.isEmpty(action)}">
+                <a th:href="@{/profil/update}" class="btn-like-button">Modifier</a>
+            </div>
+            <div data-th-if="${!#strings.isEmpty(action)}">
+                <button class="btn-like-button_val"  type="submit">Valider</button>
+            </div>
+            <div data-th-if="${#strings.isEmpty(action)}">
+                <a class="btn-like-button_sup" th:href="@{/deleteAccount}">Supprimer mon compte</a>
+            </div>
+
+
+        </div>
+
+</form>
+</main>
+
+</body>
+</html>

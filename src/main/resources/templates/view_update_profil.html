@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout :: frag_layout(
+                title=~{::title}, content=~{::main}, addRessources=~{::#addRessources})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier mon profil</title>
+  <th:block id="addRessources">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+  </th:block>
+</head>
+<body>
+<main class="form_center">
+  <div class="form-container">
+  <form  data-th-replace="~{fragments/fragment_profil_form :: frag_profil_form(#{label.form.update}, '/profil/update')}">
+  </form>
+  </div>
+</main>
+</body>
+</html>
